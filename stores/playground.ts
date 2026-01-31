@@ -80,17 +80,17 @@ export const usePlaygroundStore = defineStore('playground', () => {
 
     status.value = 'mount'
     await wc.mount(filesToWebContainerFs([...files.values()]))
-  }
 
-  // Mount the playground on client side
-  if (import.meta.client) {
     // In dev, when doing HMR, we kill the previous process while reusing the same WebContainer
     if (import.meta.hot) {
       import.meta.hot.accept(() => {
         killPreviousProcess()
       })
     }
+  }
 
+  // Mount the playground on client side
+  if (import.meta.client) {
     // Don't auto-start - wait for manual start
     // _promiseInit = init()
   }
@@ -236,7 +236,11 @@ export const usePlaygroundStore = defineStore('playground', () => {
     }
     catch (err) {
       console.error('Failed to start playground:', err)
-      error.value = err instanceof Error ? err : { message: String(err) }
+      error.value = {
+        message: err instanceof Error ? err.message : String(err),
+        // Store original error for debugging
+        ...(typeof err === 'object' && err !== null ? { original: err } : {}),
+      }
       status.value = 'error'
     }
   }

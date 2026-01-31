@@ -60,7 +60,7 @@ function getTextClass(status: PlaygroundStatus) {
           flex="~ gap-2 items-center"
 
           hover:bg-primary-darker rounded bg-primary px-6 py-3 text-lg text-white font-medium transition-all
-          aria-label="Launch the playground"
+          :aria-label="$t('playground.launch')"
           @click="play.manualStart()"
         >
           <div i-ph-play-duotone text-xl />
