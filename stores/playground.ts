@@ -32,6 +32,7 @@ export const usePlaygroundStore = defineStore('playground', () => {
   const colorMode = useColorMode()
   let _promiseInit: Promise<void> | undefined
   let hasInstalled = false
+  const isManuallyStarted = ref(false)
 
   // Mount the playground on client side
   if (import.meta.client) {
@@ -82,8 +83,6 @@ export const usePlaygroundStore = defineStore('playground', () => {
       status.value = 'mount'
       await wc.mount(filesToWebContainerFs([...files.values()]))
 
-      startServer()
-
       // In dev, when doing HMR, we kill the previous process while reusing the same WebContainer
       if (import.meta.hot) {
         import.meta.hot.accept(() => {
@@ -92,7 +91,8 @@ export const usePlaygroundStore = defineStore('playground', () => {
       }
     }
 
-    _promiseInit = init()
+    // Don't auto-start - wait for manual start
+    // _promiseInit = init()
   }
 
   let abortController: AbortController | undefined
@@ -220,6 +220,20 @@ export const usePlaygroundStore = defineStore('playground', () => {
     ])
   }
 
+  async function manualStart() {
+    if (!import.meta.client || isManuallyStarted.value)
+      return
+
+    isManuallyStarted.value = true
+
+    if (!_promiseInit) {
+      _promiseInit = init()
+    }
+
+    await _promiseInit
+    await startServer()
+  }
+
   return {
     get init() {
       return _promiseInit
@@ -229,8 +243,10 @@ export const usePlaygroundStore = defineStore('playground', () => {
     status,
     error,
     currentProcess,
+    isManuallyStarted,
 
     restartServer: startServer,
+    manualStart,
 
     files,
     fileSelected,

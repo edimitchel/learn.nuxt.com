@@ -49,7 +49,26 @@ function getTextClass(status: PlaygroundStatus) {
     flex="~ col items-center gap-2 justify-center"
     h-full
   >
-    <template v-if="play.status === 'interactive'">
+    <template v-if="!play.isManuallyStarted">
+      <div flex="~ col items-center gap-4">
+        <div flex="~ gap-2 items-center" text-lg>
+          <div i-ph-play-circle-duotone text-2xl />
+          {{ $t('playground.ready-to-launch') }}
+        </div>
+        <button
+          flex="~ gap-2 items-center"
+          bg-primary hover:bg-primary-darker
+          text-white
+          rounded px-6 py-3 text-lg font-medium
+          transition-all
+          @click="play.manualStart()"
+        >
+          <div i-ph-play-duotone text-xl />
+          {{ $t('playground.launch') }}
+        </button>
+      </div>
+    </template>
+    <template v-else-if="play.status === 'interactive'">
       <div flex="~ gap-2 items-center" text-lg>
         <div i-ph-terminal-window-duotone text-2xl />
         {{ $t('interactive-terminal-mode') }}

@@ -29,3 +29,6 @@ built: Built
 vueVersion: Vue version
 nuxtVersion: Nuxt version
 editor: Editor
+playground:
+  launch: Launch the playground
+  ready-to-launch: Ready to launch the playground

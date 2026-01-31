@@ -29,3 +29,6 @@ built: ビルド
 vueVersion: Vueバージョン
 nuxtVersion: Nuxtバージョン
 editor: エディタ
+playground:
+  launch: プレイグラウンドを起動
+  ready-to-launch: プレイグラウンドを起動する準備ができました
