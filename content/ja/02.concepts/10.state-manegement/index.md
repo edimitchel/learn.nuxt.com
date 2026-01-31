@@ -1,5 +1,6 @@
 ---
 ogImage: true
+draft: true
 ---
 
 # 状態管理

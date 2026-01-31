@@ -1,5 +1,6 @@
 ---
 ogImage: true
+draft: true
 ---
 
 # Auto Imports

@@ -25,7 +25,7 @@ const paddingLeft = computed(() => `${0.5 + props.level * 0.8}rem`)
 </script>
 
 <template>
-  <div v-if="resolved && (!(resolved.meta as any)?.unlisted || current?.startsWith(resolved.path))" class="content-nav-item">
+  <div v-if="resolved && (!(resolved.meta as any)?.unlisted || current?.startsWith(resolved.path)) && !(resolved.meta as any)?.draft" class="content-nav-item">
     <template v-if="resolved.children?.length">
       <details :open="route.path.includes(resolved.path)">
         <summary>
