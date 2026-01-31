@@ -30,6 +30,7 @@ Pour cacher du contenu à partir d'une partie 3 (ou toute autre section future):
 3. Le menu de navigation filtrera automatiquement ces pages
 
 Exemple de structure:
+
 ```
 content/
   en/
@@ -56,6 +57,7 @@ unlisted: true
 Pour exclure complètement une section du système de contenu:
 
 Modifier `/content.config.ts`:
+
 ```typescript
 export default defineContentConfig({
   collections: {
@@ -73,6 +75,7 @@ export default defineContentConfig({
 ## Composant responsable
 
 Le filtrage est géré par `/components/ContentNavItem.vue` qui vérifie les propriétés:
+
 - `draft`: Cache complètement le contenu
 - `unlisted`: Cache du menu (sauf si on est déjà sur la page)
 
