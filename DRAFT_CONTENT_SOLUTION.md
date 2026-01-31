@@ -65,7 +65,7 @@ export default defineContentConfig({
       type: 'page',
       source: {
         include: 'en/**',
-        exclude: ['**/.template/**', '**/03.*/**'], // Exclut tous les dossiers commençant par 03.
+        exclude: ['**/.template/**', '**/03.*/**'], // Excludes all folders starting with 03.
       },
     }),
   },
