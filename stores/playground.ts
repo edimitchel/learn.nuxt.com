@@ -226,12 +226,19 @@ export const usePlaygroundStore = defineStore('playground', () => {
 
     isManuallyStarted.value = true
 
-    if (!_promiseInit) {
-      _promiseInit = init()
-    }
+    try {
+      if (!_promiseInit) {
+        _promiseInit = init()
+      }
 
-    await _promiseInit
-    await startServer()
+      await _promiseInit
+      await startServer()
+    }
+    catch (err) {
+      console.error('Failed to start playground:', err)
+      error.value = err instanceof Error ? err : { message: String(err) }
+      status.value = 'error'
+    }
   }
 
   return {

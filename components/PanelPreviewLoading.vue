@@ -56,9 +56,11 @@ function getTextClass(status: PlaygroundStatus) {
           {{ $t('playground.ready-to-launch') }}
         </div>
         <button
+          type="button"
           flex="~ gap-2 items-center"
 
           hover:bg-primary-darker rounded bg-primary px-6 py-3 text-lg text-white font-medium transition-all
+          aria-label="Launch the playground"
           @click="play.manualStart()"
         >
           <div i-ph-play-duotone text-xl />
