@@ -57,10 +57,8 @@ function getTextClass(status: PlaygroundStatus) {
         </div>
         <button
           flex="~ gap-2 items-center"
-          bg-primary hover:bg-primary-darker
-          text-white
-          rounded px-6 py-3 text-lg font-medium
-          transition-all
+
+          hover:bg-primary-darker rounded bg-primary px-6 py-3 text-lg text-white font-medium transition-all
           @click="play.manualStart()"
         >
           <div i-ph-play-duotone text-xl />
