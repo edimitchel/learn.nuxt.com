@@ -91,8 +91,8 @@ export const usePlaygroundStore = defineStore('playground', () => {
 
   // Mount the playground on client side
   if (import.meta.client) {
-    // Don't auto-start - wait for manual start
-    // _promiseInit = init()
+    // Note: Initialization is now deferred until user clicks "Launch playground"
+    // Previously: _promiseInit = init() was called here to auto-start
   }
 
   let abortController: AbortController | undefined
